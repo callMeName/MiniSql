@@ -1,6 +1,8 @@
 #ifndef API_H
 #define API_H
 #include "RecordManager.h"
+#include "Attribute.h"
+#include "Condition.h"
 #include <string>
 #include <vector>
 using namespace std;
@@ -11,39 +13,83 @@ public:
 	RecordManager rm;
 	API(){}
 	~API(){}
-	void dropTable(string tableName);
-	void dropIndex(string indexName);
+    
+    //删除一个table,输入talbe的名称
+	void tableDrop(string tableName);
+	
+    //删除一个table
+    //输入talbe的名称
+    void indexDrop(string indexName);
+    
+    //创建一个新的index
+    //输入index的名称, talbe的名称 和talbe中属性的名称
+	void indexCreate(string indexName, string tableName, string attributeName);
+  
+    //创建一个新的table
+    //输入talbe的名称, 属性的一个列表 和talbe中的主键的名字
+	void tableCreate(string tableName, vector<Attribute> attributeVector, string primaryKeyName);
 
-	void createIndex(string fileName,string tableName,string colName);
-	void createTable(string tableName,vector<string> col,vector<string> type,vector<int> uniq,string primKey);
+    //输出 一个表的所有的记录 和 总记录数
+    //输入table的名称
+	void recordShow(string tableName);
+    
+    //输出 一个表的条件的记录 和 记录数
+    //输入table的名称, 和一个条件的列表
+	void recordShow(string tableName, vector<Condition> conditionVector);
 
-	void printRecord(string tableName);
-	void printRecord(string tableName,string colName1,string cond1,string operater1);
-	void printRecord(string tableName,string colName1,string cond1,string operater1,
-		string colName2,string cond2,string operater2,int logic);
+    //插入record
+    //输入 table的名称,和插入的这条record
+	void recordInsert(string tableName,vector<string> recordContent);
 
-	void insertRecord(string tableName,vector<string> v);
+    //删除 一个表的条件的所有记录
+    //输出记录数
+    //输入table的名
+	void recordDelete(string tableName);
+    
+    //删除 一个表的条件的符合条件记录
+    //输出记录数
+    //输入table的名称, 和一个条件的列表
+	void recordDelete(string tableName, vector<Condition> conditionVector);
 
+    //输出 table的记录数
+    //输入 table的名称
+	int recordNumGet(string tableName);
+    
+    //输出 table每条记录的长度
+    //输入 table的名称
+	int recordSizeGet(string tableName);
+    
+    //输出 type每条记录的长度
+    //输入 type的名称
+	int typeSizeGet(int type);
+    
+    //输出 table的属性名称列表
+    //输入 table的名称
+	vector<string> attributeNameGet(string tableName);
+    
+    //输出 table的属性类型列表
+    //输入 table的名称
+	vector<string> attributeTypeGet(string tableName);
+    
+    //输出 table的属性列表
+    //输入 table的名称
+    vector<Attribute> attributeGet(string tableName);
 
-	int insertIndexItem(string fileName,string colName,string value,int block,int index);
-	int getIndexItem(string fileName,string colName,string value,int * block,int * index);
-
-	void deleteValue(string tableName);
-	void deleteValue(string tableName,string colName1,string cond1,string operater1);
-	void deleteValue(string tableName,string colName1,string cond1,string operater1,
-		string colName2,string cond2,string operater2,int logic);	
-
-	int getRecordNum(string tableName);
-	int calcuteLenth(string tableName);
-	int calcuteLenth2(string type);
-	vector<string> getCollName(string tableName);
-	vector<string> getCollType(string tableName);
-
+    
+    //插入 二叉树的一个节点（待修改）
+    //输入 索引名称,value
+    void indexValueInsert(string indexName, string value);
+    
+    //输出 二叉树的一个节点（待修改）
+    //输入 索引名称,value
+    int indexBlockGet(string indexName, string value);
+    
 };
 
 struct int_t{
 	int value;
 };
+
 struct float_t{
 	float value;
 };
