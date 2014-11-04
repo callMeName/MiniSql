@@ -46,8 +46,8 @@ class BufferManager
     public:
         BufferManager();
         ~BufferManager();
-        fileNode* getFile(const char* fileName,bool if_pin);
-        blockNode* getBlock(const char* fileName,blockNode* position,bool if_pin);
+        fileNode* getFile(const char* fileName,bool if_pin = false);
+        blockNode* getBlock(const char* fileName,blockNode* position,bool if_pin = false);
         void writtenBackToDiskAll();
         void writtenBackToDisk(const char* fileName,blockNode* block);
         void set_dirty(blockNode &block);
