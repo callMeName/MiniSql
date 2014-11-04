@@ -11,26 +11,7 @@
 #include "Minisql.h"
 #include <stdio.h>
 
-struct blockNode
-{
-    int offsetNum;
-    bool pin;
-    bool dirty;
-    bool reference;
-    char *address;
-    blockNode * nextBlock;
-    blockNode * preBlock;
-};
 
-struct fileNode
-{
-    char *fileName;
-    bool pin;
-   // bool is_using;
-    blockNode *blockHead;
-    fileNode * nextFile;
-    fileNode * preFile;
-};
 static int replaced_block = -1;
 
 class BufferManager
@@ -43,17 +24,21 @@ class BufferManager
         int total_file;
         void init_block(blockNode &block);
         void init_file(fileNode &file);
+        blockNode* getBlock(const char* fileName,blockNode* position,bool if_pin = false);
+        void writtenBackToDiskAll();
+        void writtenBackToDisk(const char* fileName,blockNode* block);
+        void clean_dirty(blockNode &block);
+
+    
     public:
         BufferManager();
         ~BufferManager();
         fileNode* getFile(const char* fileName,bool if_pin = false);
-        blockNode* getBlock(const char* fileName,blockNode* position,bool if_pin = false);
-        void writtenBackToDiskAll();
-        void writtenBackToDisk(const char* fileName,blockNode* block);
         void set_dirty(blockNode &block);
-        void clean_dirty(blockNode &block);
         void set_pin(blockNode &block,bool pin);
         void set_pin(fileNode &file,bool pin);
+        blockNode* getNextBlock(const char * fileName,blockNode* block);
+        blockNode* getBlockHead(const char * fileName,fileNode* file);
 };
 
 #endif /* defined(__Minisql__BufferManager__) */
