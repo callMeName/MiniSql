@@ -25,7 +25,7 @@ class BufferManager
         int total_file; // the number of file that have been used, which means the file is in the list.
         void init_block(blockNode & block);
         void init_file(fileNode & file);
-        blockNode* getBlock(const char* fileName,blockNode* position,bool if_pin = false);
+        blockNode* getBlock(fileNode * file,blockNode* position,bool if_pin = false);
         void writtenBackToDiskAll();
         void writtenBackToDisk(const char* fileName,blockNode* block);
         void clean_dirty(blockNode &block);
@@ -40,8 +40,7 @@ class BufferManager
     
     blockNode* getNextBlock(fileNode * file,blockNode* block);
     blockNode* getBlockHead(fileNode* file);
-//        blockNode* getNextBlock(const char * fileName,blockNode* block);
-//        blockNode* getBlockHead(const char * fileName,fileNode* file);
+
 };
 
 #endif /* defined(__Minisql__BufferManager__) */
