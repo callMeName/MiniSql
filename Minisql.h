@@ -33,7 +33,7 @@ struct fileNode
 
 #define MAX_FILE_NUM 30
 #define MAX_BLOCK_NUM 60
-#define BLOCK_SIZE 8192	
+#define BLOCK_SIZE 3
 #define MAX_FILE_NAME 30
 
 #endif

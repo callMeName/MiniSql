@@ -192,7 +192,7 @@ blockNode* BufferManager::getBlock(fileNode * file,blockNode *position, bool if_
         btmp = &block_pool[0];
         total_block ++;
     }
-    if(total_block < MAX_BLOCK_NUM) // there are empty blocks in the block pool
+    else if(total_block < MAX_BLOCK_NUM) // there are empty blocks in the block pool
     {
         for(int i = 0 ;i < MAX_BLOCK_NUM;i ++)
         {
@@ -261,7 +261,9 @@ blockNode* BufferManager::getBlock(fileNode * file,blockNode *position, bool if_
     {
         if(fseek(fileHandle, (btmp->offsetNum==0?0:btmp->offsetNum)*BLOCK_SIZE, 0) == 0)
         {
-            btmp->using_size = (int)fread(btmp->address, 1, BLOCK_SIZE, fileHandle);
+          //  btmp->using_size = (int)fread(btmp->address, 1, BLOCK_SIZE, fileHandle);
+            fread(btmp->address, 1, BLOCK_SIZE, fileHandle);
+            btmp ->using_size = getUsingSize(btmp);
         }
         else
         {
@@ -300,6 +302,7 @@ void BufferManager::writtenBackToDisk(const char* fileName,blockNode* block)
         {
             if(fseek(fileHandle, block->offsetNum*BLOCK_SIZE, 0) == 0)
             {
+                printf("被替换的block: block address: %s ,using_size: %d\n",block->address,block->using_size);
                 if(fwrite(block->address, block->using_size, 1, fileHandle) != 1)
                 {
                     printf("Problem writing the file %s in writtenBackToDisking",fileName);
@@ -421,6 +424,19 @@ void BufferManager::set_dirty(blockNode &block)
 void BufferManager::clean_dirty(blockNode &block)
 {
     block.dirty = false;
+}
+
+int BufferManager::getUsingSize(blockNode* block)
+{
+    char * p = block -> address;
+    for(int i = 0; i < BLOCK_SIZE;i ++)
+    {
+        if(*p==0)
+            break;
+        else
+            p++;
+    }
+    return p-block->address;
 }
 
 
