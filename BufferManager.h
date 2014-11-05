@@ -37,8 +37,11 @@ class BufferManager
         void set_dirty(blockNode & block);
         void set_pin(blockNode & block,bool pin);
         void set_pin(fileNode & file,bool pin);
-        blockNode* getNextBlock(const char* fileName,blockNode* block);
-        blockNode* getBlockHead(const char* fileName,fileNode* file);
+    
+    blockNode* getNextBlock(fileNode * file,blockNode* block);
+    blockNode* getBlockHead(fileNode* file);
+//        blockNode* getNextBlock(const char * fileName,blockNode* block);
+//        blockNode* getBlockHead(const char * fileName,fileNode* file);
 };
 
 #endif /* defined(__Minisql__BufferManager__) */
