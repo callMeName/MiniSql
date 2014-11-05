@@ -1,28 +1,26 @@
 #ifndef API_H
 #define API_H
 #include "RecordManager.h"
+#include "IndexManager.h"
+#include "CatalogManager.h"
+
 #include "Attribute.h"
 #include "Condition.h"
 #include <string>
 #include <vector>
 using namespace std;
-class IndexManager;
-class RecordManager;
 class API{
 public:
 	RecordManager rm;
 	API(){}
 	~API(){}
     
-    //删除一个table,输入talbe的名称
+    
 	void tableDrop(string tableName);
-	
-    //删除一个table
-    //输入talbe的名称
+    
     void indexDrop(string indexName);
     
-    //创建一个新的index
-    //输入index的名称, talbe的名称 和talbe中属性的名称
+  
 	void indexCreate(string indexName, string tableName, string attributeName);
   
     //创建一个新的table
@@ -75,7 +73,6 @@ public:
     //输入 table的名称
     vector<Attribute> attributeGet(string tableName);
 
-    
     //插入 二叉树的一个节点（待修改）
     //输入 索引名称,value
     void indexValueInsert(string indexName, string value);
