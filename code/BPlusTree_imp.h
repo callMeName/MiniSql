@@ -36,7 +36,7 @@ TreeNode<KeyType>::TreeNode(int m_degree,bool newLeaf):count(0),parent(NULL),nex
 }
 
 /**
- * @Deconstructor
+ *  Deconstructor
  *
  */
 template <class KeyType>
