@@ -1,2 +1,2 @@
 all:
-	g++ -std=c++0x -w -O -fpermissive -o Minisql code/*.h code/*.cpp
+	g++ -std=c++0x -o Minisql code/*.h code/*.cpp
