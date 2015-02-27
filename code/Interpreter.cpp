@@ -247,8 +247,9 @@ int Interpreter::interpreter(string s)
 		word = getWord(s,&tmp);
 		if (word.empty())	// without condition
 		{
-			if(attrSelected.size()==0)
+			if(attrSelected.size()==0){
 				ap->recordShow(tableName);
+			}
 			else
 				ap->recordShow(tableName,&attrSelected);
 			return 1;
