@@ -1,5 +1,5 @@
 #Minisql
-A very simple local relational database implementation.
+A very simple local relational database implementation. A small sql server.
 
 Just for learning the details of a database.
 
