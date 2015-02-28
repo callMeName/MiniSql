@@ -9,7 +9,8 @@ To be easy, the command of Minisql is a little different from the classic sql co
 
 All index is for single-attribute and single-value. Minisql will create index on the primary key automatically. Users can create index on unique attribute. 
 
-* 		create table tableName(
+
+		create table tableName(
 			attributeName type,
 			attributeName type,
 			attributeName type,
@@ -17,18 +18,25 @@ All index is for single-attribute and single-value. Minisql will create index on
 			primary key (attributeName)
 		);
 
-*		drop table tableName;
-*		create index indexName on tableName(attributeName);
-*		drop index indexName;
-*		select * from tableName;
+		drop table tableName;
+
+		create index indexName on tableName(attributeName);
+		
+		drop index indexName;
+		
+		select * from tableName;
 		select * from tableName where condition1;
 		select * from tableName where condition1 and condition2;
 		condition represents that attribute op value, where op is > <> = >= <=.
-*		insert into tableName values(value1, value2);
-*		delete * from tableName;
+		
+		insert into tableName values(value1, value2);
+		
+		delete * from tableName;
 		delete * from tableName where condition;
-*		quit;
-*		execfile file;  # exec the sql queries in the file.
+		
+		quit;
+		
+		execfile file;  # exec the sql queries in the file.
 
 ----
 ##software architecture
