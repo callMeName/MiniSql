@@ -3,7 +3,7 @@ A very simple local relational database implementation. A small sql server.
 
 Just for learning the details of a database.
 
-----
+--
 ##Commands
 To be easy, the command of Minisql is a little different from the classic sql command. Only support int \ float \ char(n).
 
@@ -38,7 +38,8 @@ All index is for single-attribute and single-value. Minisql will create index on
 		
 		execfile file;  # exec the sql queries in the file.
 
-----
+--
+
 The details of implementation is [here](http://www.xuyuhao.com/?p=96).
 	
 	
