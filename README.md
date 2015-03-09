@@ -39,20 +39,7 @@ All index is for single-attribute and single-value. Minisql will create index on
 		execfile file;  # exec the sql queries in the file.
 
 ----
-##software architecture
-There are 6 modules in this system.
-
-* **Interpreter**. This module is responsible for interaction with users, processing and checking the input and then constructing the inner data structure for next processing.
-
-* **API**. This module produces interface for Interpreter module. Then it calls the interfaces of Catalog Manager, Record Manager, Index Manager and return the result to the Interpreter module.
-
-* **Catalog Manager**. This module manages all information of the database such as the information of tables, index and attributes.
-
-* **Record Manager**. This module manages the data files. The data file consists of multiple data blocks whose size equals to the buffer block.
-
-* **Index Manager**. This module manages the B+ tree index and produces interfaces for other modules.
-
-* **Buffer Manager**. This module manages the buffer areas. To improve the efficiency of I/O, the buffer areas transfer blocks with the file system. The block size if 4KB.
+The details of implementation is [here](http://www.xuyuhao.com/?p=96).
 	
 	
 
