@@ -40,7 +40,6 @@ All index is for single-attribute and single-value. Minisql will create index on
 
 --
 
-The details of implementation is [here](http://www.xuyuhao.com/?p=96).
 	
 	
 
